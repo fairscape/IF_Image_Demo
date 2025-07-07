@@ -277,7 +277,7 @@
               "@id": "manifest-csv"
             },
             "extract": {
-              "column": "**Chromosome"
+              "column": "Chromosome"
             }
           }
         },
