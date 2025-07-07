@@ -163,6 +163,201 @@
       "field": [
         {
           "@type": "cr:Field",
+          "@id": "all_images/plate",
+          "name": "plate",
+          "description": "Plate identifier number for the experiment",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Plate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/well",
+          "name": "well",
+          "description": "Well position on the plate (e.g., G11, E10, D4)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Well"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/treatment",
+          "name": "treatment",
+          "description": "Treatment condition: untreated, paclitaxel, or vorinostat",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Treatment"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/hpa_antibody_id",
+          "name": "hpa_antibody_id",
+          "description": "Human Protein Atlas antibody identifier",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "HPA_Antibody_ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/ensembl_id",
+          "name": "ensembl_id",
+          "description": "Ensembl gene identifier",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "ENSEMBL ID"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/uniprot",
+          "name": "uniprot",
+          "description": "UniProt protein identifier",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Uniprot"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/gene_name_hpa",
+          "name": "gene_name_hpa",
+          "description": "Gene name from Human Protein Atlas",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Gene_Name_HPA"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/chromosome",
+          "name": "chromosome",
+          "description": "Chromosome location of the gene",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "**Chromosome"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/color",
+          "name": "color",
+          "description": "Fluorescence channel: blue (DAPI/nuclei), red (tubulin/microtubules), green (protein of interest), yellow (calreticulin/ER)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "color"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/filename",
+          "name": "filename",
+          "description": "Image filename",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "filename"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/replicate",
+          "name": "replicate",
+          "description": "Replicate identifier (e.g., R7, R11, R2)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "replicate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/z_slice",
+          "name": "z_slice",
+          "description": "Z-stack slice identifier (e.g., z01, z00)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "z_slice"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/split",
+          "name": "split",
+          "description": "Dataset split designation for machine learning workflows (train/test)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "split"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
           "@id": "all_images/archive_path",
           "name": "archive_path",
           "description": "Path to image file within zip archive. This field establishes the join between the manifest and the image files.",
@@ -210,51 +405,6 @@
             },
             "extract": {
               "fileProperty": "content"
-            }
-          }
-        },
-        {
-          "@type": "cr:Field",
-          "@id": "all_images/treatment",
-          "name": "treatment",
-          "description": "Treatment condition: untreated, paclitaxel, or vorinostat",
-          "dataType": "sc:Text",
-          "source": {
-            "fileObject": {
-              "@id": "manifest-csv"
-            },
-            "extract": {
-              "column": "treatment"
-            }
-          }
-        },
-        {
-          "@type": "cr:Field",
-          "@id": "all_images/color",
-          "name": "color",
-          "description": "Fluorescence channel: blue (DAPI/nuclei), red (tubulin/microtubules), green (protein of interest), yellow (calreticulin/ER)",
-          "dataType": "sc:Text",
-          "source": {
-            "fileObject": {
-              "@id": "manifest-csv"
-            },
-            "extract": {
-              "column": "color"
-            }
-          }
-        },
-        {
-          "@type": "cr:Field",
-          "@id": "all_images/split",
-          "name": "split",
-          "description": "Dataset split designation for machine learning workflows (train/test)",
-          "dataType": "sc:Text",
-          "source": {
-            "fileObject": {
-              "@id": "manifest-csv"
-            },
-            "extract": {
-              "column": "split"
             }
           }
         }
