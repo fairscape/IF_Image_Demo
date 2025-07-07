@@ -101,7 +101,7 @@
       "@type": "cr:FileObject",
       "@id": "manifest-csv",
       "name": "Dataset_Manifest",
-      "contentUrl": "./cm4ai_archive_manifest.csv",
+      "contentUrl": "https://raw.githubusercontent.com/fairscape/IF_Image_Demo/refs/heads/main/cm4ai_if_images_manifest.csv",
       "encodingFormat": "text/csv",
       "md5": "4375fbecd7e1972fe330a6ebc4319e01",
       "description": "Manifest file mapping archive paths to experimental metadata"
