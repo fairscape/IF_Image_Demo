@@ -1,0 +1,282 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isArray": "cr:isArray",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "name": "CM4AI_Multi_Treatment_IF_Dataset",
+  "description": "Comprehensive immunofluorescence imaging dataset from the Cell Maps for AI project showing protein localization in MDA-MB-468 breast cancer cells under three treatment conditions: untreated control, paclitaxel treatment, and vorinostat treatment. Each condition contains 4-channel confocal microscopy images (DAPI/blue for nuclei, calreticulin/yellow for ER, tubulin/red for microtubules, and protein-specific antibody/green).",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en",
+  "citeAs": "",
+  "keywords": [
+    "biomedical imaging",
+    "immunofluorescence",
+    "protein localization",
+    "breast cancer",
+    "MDA-MB-468",
+    "paclitaxel",
+    "vorinostat",
+    "confocal microscopy",
+    "cell biology",
+    "machine learning",
+    "AI",
+    "CM4AI"
+  ],
+  "version": "1.0.0",
+  "creator": [
+    {
+      "@type": "sc:Person",
+      "name": "Hansen JN"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Axelsson U"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Johannesson A"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Fall J"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Ballllosera Navarro F"
+    },
+    {
+      "@type": "sc:Person",
+      "name": "Lundberg E"
+    }
+  ],
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "manifest-csv",
+      "name": "Dataset_Manifest",
+      "contentUrl": "./cm4ai_archive_manifest.csv",
+      "encodingFormat": "text/csv",
+      "md5": "4375fbecd7e1972fe330a6ebc4319e01",
+      "description": "Manifest file mapping archive paths to experimental metadata"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "untreated-archive",
+      "name": "file_102109",
+      "contentUrl": "https://dataverse.lib.virginia.edu/api/access/datafile/102109",
+      "encodingFormat": "application/zip",
+      "md5": "60d3251ddc2d04e34739cd0ee92761b8",
+      "description": "Zip archive containing untreated control images organized by channel"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "paclitaxel-archive",
+      "name": "file_102108",
+      "contentUrl": "https://dataverse.lib.virginia.edu/api/access/datafile/102108",
+      "encodingFormat": "application/zip",
+      "md5": "e8584a44b689919e23f18ec6e570930c",
+      "description": "Zip archive containing paclitaxel treatment images organized by channel"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "vorinostat-archive",
+      "name": "file_102110",
+      "contentUrl": "https://dataverse.lib.virginia.edu/api/access/datafile/102110",
+      "encodingFormat": "application/zip",
+      "md5": "69834172241caf8fcec33c8e32683ceb",
+      "description": "Zip archive containing vorinostat treatment images organized by channel"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "all-image-files",
+      "name": "All_Immunofluorescence_Images",
+      "containedIn": [
+        {
+          "@id": "untreated-archive"
+        },
+        {
+          "@id": "paclitaxel-archive"
+        },
+        {
+          "@id": "vorinostat-archive"
+        }
+      ],
+      "encodingFormat": "image/jpeg",
+      "includes": "**/*.jpg",
+      "description": "All immunofluorescence images across all treatments and channels"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "all_images",
+      "name": "all_images",
+      "description": "Complete dataset with all treatments, channels, and experimental metadata. The user should filter this record set in their code to create train/test splits based on the 'split' field.",
+      "key": "archive_path",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/archive_path",
+          "name": "archive_path",
+          "description": "Path to image file within zip archive. This field establishes the join between the manifest and the image files.",
+          "dataType": "sc:Text",
+          "references": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "archive_path"
+            }
+          },
+          "source": {
+            "fileSet": {
+              "@id": "all-image-files"
+            },
+            "extract": {
+              "fileProperty": "filepath"
+            },
+            "transform": {
+              "regex": "^.*/extract/[^/]+/(.*)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/full_path",
+          "name": "full_path",
+          "dataType": "sc:Text",
+          "description": "The FULL, absolute path to the cached image file on disk.",
+          "source": {
+            "fileSet": { "@id": "all-image-files" },
+            "extract": { "fileProperty": "filepath" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/image_content",
+          "name": "image_content",
+          "description": "The actual image content from within the archives.",
+          "dataType": "sc:ImageObject",
+          "source": {
+            "fileSet": {
+              "@id": "all-image-files"
+            },
+            "extract": {
+              "fileProperty": "content"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/treatment",
+          "name": "treatment",
+          "description": "Treatment condition: untreated, paclitaxel, or vorinostat",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "treatment"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/color",
+          "name": "color",
+          "description": "Fluorescence channel: blue (DAPI/nuclei), red (tubulin/microtubules), green (protein of interest), yellow (calreticulin/ER)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "color"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/split",
+          "name": "split",
+          "description": "Dataset split designation for machine learning workflows (train/test)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "split"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "url": "https://cm4ai.org",
+  "rai:dataReleaseMaintenancePlan": [
+    "Dataset will be regularly updated and augmented through the end of the project in November 2026, on a quarterly basis. Long term preservation in the https://dataverse.lib.virginia.edu/, supported by committed institutional funds."
+  ],
+  "rai:personalSensitiveInformation": [
+    "Involves human subjects: No. Uses de-identified samples: Yes."
+  ],
+  "rai:dataBiases": [
+    "Data in this release was derived from commercially available de-identified human cell lines, and does not represent all biological variants which may be seen in the population at large. "
+  ],
+  "rai:dataLimitations": [
+    "This is an interim release. It does not contain predicted cell maps, which will be added in future releases. The current release is most suitable for bioinformatics analysis of the individual datasets. Requires domain expertise for meaningful analysis.",
+    "These laboratory data are not to be used in clinical decision-making or in any context involving patient care without appropriate regulatory oversight and approval."
+  ],
+  "rai:dataUseCases": [
+    "AI-ready datasets to support research in functional genomics, AI model training, cellular process analysis, cell architectural changes, and interactions in presence of specific disease processes, treatment conditions, or genetic perturbations. A major goal is to enable visible machine learning applications, as proposed in Ma et al. (2018) Nature Methods."
+  ],
+  "rai:dataSocialImpact": "This data release is part of the Cell Maps for Artificial Intelligence (CM4AI) project, a Data Generation Project of the NIH Bridge2AI program. The goal of CM4AI is to create AI-ready datasets that will enable machine learning applications in functional genomics, cellular process analysis, and disease modeling. The datasets are designed to be used by researchers in the field of artificial intelligence and functional genomics to train models that can predict cellular behavior and interactions."
+}
