@@ -159,8 +159,23 @@
       "@id": "all_images",
       "name": "all_images",
       "description": "Complete dataset with all treatments, channels, and experimental metadata. The user should filter this record set in their code to create train/test splits based on the 'split' field.",
-      "key": "archive_path",
+      "key": "filename",
       "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/filename",
+          "name": "filename",
+          "description": "Image filename from manifest",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "filename"
+            }
+          }
+        },
         {
           "@type": "cr:Field",
           "@id": "all_images/plate",
@@ -298,21 +313,6 @@
         },
         {
           "@type": "cr:Field",
-          "@id": "all_images/filename",
-          "name": "filename",
-          "description": "Image filename",
-          "dataType": "sc:Text",
-          "source": {
-            "fileObject": {
-              "@id": "manifest-csv"
-            },
-            "extract": {
-              "column": "filename"
-            }
-          }
-        },
-        {
-          "@type": "cr:Field",
           "@id": "all_images/replicate",
           "name": "replicate",
           "description": "Replicate identifier (e.g., R7, R11, R2)",
@@ -360,16 +360,49 @@
           "@type": "cr:Field",
           "@id": "all_images/archive_path",
           "name": "archive_path",
-          "description": "Path to image file within zip archive. This field establishes the join between the manifest and the image files.",
+          "description": "Path to image file within zip archive",
           "dataType": "sc:Text",
-          "references": {
+          "source": {
             "fileObject": {
               "@id": "manifest-csv"
             },
             "extract": {
               "column": "archive_path"
             }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/extracted_filename",
+          "name": "extracted_filename",
+          "description": "Filename extracted from the file path for joining",
+          "dataType": "sc:Text",
+          "references": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "filename"
+            }
           },
+          "source": {
+            "fileSet": {
+              "@id": "all-image-files"
+            },
+            "extract": {
+              "fileProperty": "filename"
+            },
+            "transform": {
+              "regex": "([^\\/]*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_images/full_path",
+          "name": "full_path",
+          "dataType": "sc:Text",
+          "description": "The FULL, absolute path to the cached image file on disk",
           "source": {
             "fileSet": {
               "@id": "all-image-files"
@@ -381,20 +414,9 @@
         },
         {
           "@type": "cr:Field",
-          "@id": "all_images/full_path",
-          "name": "full_path",
-          "dataType": "sc:Text",
-          "description": "The FULL, absolute path to the cached image file on disk.",
-          "source": {
-            "fileSet": { "@id": "all-image-files" },
-            "extract": { "fileProperty": "filepath" }
-          }
-        },
-        {
-          "@type": "cr:Field",
           "@id": "all_images/image_content",
           "name": "image_content",
-          "description": "The actual image content from within the archives.",
+          "description": "The actual image content from within the archives",
           "dataType": "sc:ImageObject",
           "source": {
             "fileSet": {
