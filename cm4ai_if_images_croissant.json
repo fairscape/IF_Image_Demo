@@ -151,6 +151,45 @@
       "encodingFormat": "image/jpeg",
       "includes": "**/*.jpg",
       "description": "All immunofluorescence images across all treatments and channels"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "untreated-image-files",
+      "name": "Untreated_Images",
+      "containedIn": [
+        {
+          "@id": "untreated-archive"
+        }
+      ],
+      "encodingFormat": "image/jpeg",
+      "includes": "**/*.jpg",
+      "description": "Untreated control immunofluorescence images"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "paclitaxel-image-files",
+      "name": "Paclitaxel_Images",
+      "containedIn": [
+        {
+          "@id": "paclitaxel-archive"
+        }
+      ],
+      "encodingFormat": "image/jpeg",
+      "includes": "**/*.jpg",
+      "description": "Paclitaxel treatment immunofluorescence images"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "vorinostat-image-files",
+      "name": "Vorinostat_Images",
+      "containedIn": [
+        {
+          "@id": "vorinostat-archive"
+        }
+      ],
+      "encodingFormat": "image/jpeg",
+      "includes": "**/*.jpg",
+      "description": "Vorinostat treatment immunofluorescence images"
     }
   ],
   "recordSet": [
@@ -421,6 +460,957 @@
           "source": {
             "fileSet": {
               "@id": "all-image-files"
+            },
+            "extract": {
+              "fileProperty": "content"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "untreated_images",
+      "name": "untreated_images",
+      "description": "Untreated control images with all channels and experimental metadata",
+      "key": "filename",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/filename",
+          "name": "filename",
+          "description": "Image filename from manifest",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "filename"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/plate",
+          "name": "plate",
+          "description": "Plate identifier number for the experiment",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Plate"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/well",
+          "name": "well",
+          "description": "Well position on the plate (e.g., G11, E10, D4)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Well"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/treatment",
+          "name": "treatment",
+          "description": "Treatment condition: untreated",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Treatment"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/hpa_antibody_id",
+          "name": "hpa_antibody_id",
+          "description": "Human Protein Atlas antibody identifier",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "HPA_Antibody_ID"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/ensembl_id",
+          "name": "ensembl_id",
+          "description": "Ensembl gene identifier",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "ENSEMBL ID"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/uniprot",
+          "name": "uniprot",
+          "description": "UniProt protein identifier",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Uniprot"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/gene_name_hpa",
+          "name": "gene_name_hpa",
+          "description": "Gene name from Human Protein Atlas",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Gene_Name_HPA"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/chromosome",
+          "name": "chromosome",
+          "description": "Chromosome location of the gene",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Chromosome"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/color",
+          "name": "color",
+          "description": "Fluorescence channel: blue (DAPI/nuclei), red (tubulin/microtubules), green (protein of interest), yellow (calreticulin/ER)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "color"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/replicate",
+          "name": "replicate",
+          "description": "Replicate identifier (e.g., R7, R11, R2)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "replicate"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/z_slice",
+          "name": "z_slice",
+          "description": "Z-stack slice identifier (e.g., z01, z00)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "z_slice"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/split",
+          "name": "split",
+          "description": "Dataset split designation for machine learning workflows (train/test)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "split"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/archive_path",
+          "name": "archive_path",
+          "description": "Path to image file within zip archive",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "archive_path"
+            },
+            "transform": {
+              "regex": "^(.*untreated.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/extracted_filename",
+          "name": "extracted_filename",
+          "description": "Filename extracted from the file path for joining",
+          "dataType": "sc:Text",
+          "references": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "filename"
+            }
+          },
+          "source": {
+            "fileSet": {
+              "@id": "untreated-image-files"
+            },
+            "extract": {
+              "fileProperty": "filename"
+            },
+            "transform": {
+              "regex": "([^\\/]*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/full_path",
+          "name": "full_path",
+          "dataType": "sc:Text",
+          "description": "The FULL, absolute path to the cached image file on disk",
+          "source": {
+            "fileSet": {
+              "@id": "untreated-image-files"
+            },
+            "extract": {
+              "fileProperty": "filepath"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/image_content",
+          "name": "image_content",
+          "description": "The actual image content from within the archives",
+          "dataType": "sc:ImageObject",
+          "source": {
+            "fileSet": {
+              "@id": "untreated-image-files"
+            },
+            "extract": {
+              "fileProperty": "content"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "paclitaxel_images",
+      "name": "paclitaxel_images",
+      "description": "Paclitaxel treatment images with all channels and experimental metadata",
+      "key": "filename",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/filename",
+          "name": "filename",
+          "description": "Image filename from manifest",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "filename"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/plate",
+          "name": "plate",
+          "description": "Plate identifier number for the experiment",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Plate"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/well",
+          "name": "well",
+          "description": "Well position on the plate (e.g., G11, E10, D4)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Well"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/treatment",
+          "name": "treatment",
+          "description": "Treatment condition: paclitaxel",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Treatment"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/hpa_antibody_id",
+          "name": "hpa_antibody_id",
+          "description": "Human Protein Atlas antibody identifier",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "HPA_Antibody_ID"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/ensembl_id",
+          "name": "ensembl_id",
+          "description": "Ensembl gene identifier",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "ENSEMBL ID"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/uniprot",
+          "name": "uniprot",
+          "description": "UniProt protein identifier",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Uniprot"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/gene_name_hpa",
+          "name": "gene_name_hpa",
+          "description": "Gene name from Human Protein Atlas",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Gene_Name_HPA"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/chromosome",
+          "name": "chromosome",
+          "description": "Chromosome location of the gene",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Chromosome"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/color",
+          "name": "color",
+          "description": "Fluorescence channel: blue (DAPI/nuclei), red (tubulin/microtubules), green (protein of interest), yellow (calreticulin/ER)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "color"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/replicate",
+          "name": "replicate",
+          "description": "Replicate identifier (e.g., R7, R11, R2)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "replicate"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/z_slice",
+          "name": "z_slice",
+          "description": "Z-stack slice identifier (e.g., z01, z00)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "z_slice"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/split",
+          "name": "split",
+          "description": "Dataset split designation for machine learning workflows (train/test)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "split"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/archive_path",
+          "name": "archive_path",
+          "description": "Path to image file within zip archive",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "archive_path"
+            },
+            "transform": {
+              "regex": "^(.*paclitaxel.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/extracted_filename",
+          "name": "extracted_filename",
+          "description": "Filename extracted from the file path for joining",
+          "dataType": "sc:Text",
+          "references": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "filename"
+            }
+          },
+          "source": {
+            "fileSet": {
+              "@id": "paclitaxel-image-files"
+            },
+            "extract": {
+              "fileProperty": "filename"
+            },
+            "transform": {
+              "regex": "([^\\/]*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/full_path",
+          "name": "full_path",
+          "dataType": "sc:Text",
+          "description": "The FULL, absolute path to the cached image file on disk",
+          "source": {
+            "fileSet": {
+              "@id": "paclitaxel-image-files"
+            },
+            "extract": {
+              "fileProperty": "filepath"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "paclitaxel_images/image_content",
+          "name": "image_content",
+          "description": "The actual image content from within the archives",
+          "dataType": "sc:ImageObject",
+          "source": {
+            "fileSet": {
+              "@id": "paclitaxel-image-files"
+            },
+            "extract": {
+              "fileProperty": "content"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "vorinostat_images",
+      "name": "vorinostat_images",
+      "description": "Vorinostat treatment images with all channels and experimental metadata",
+      "key": "filename",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/filename",
+          "name": "filename",
+          "description": "Image filename from manifest",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "filename"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/plate",
+          "name": "plate",
+          "description": "Plate identifier number for the experiment",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Plate"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/well",
+          "name": "well",
+          "description": "Well position on the plate (e.g., G11, E10, D4)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Well"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/treatment",
+          "name": "treatment",
+          "description": "Treatment condition: vorinostat",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Treatment"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/hpa_antibody_id",
+          "name": "hpa_antibody_id",
+          "description": "Human Protein Atlas antibody identifier",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "HPA_Antibody_ID"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/ensembl_id",
+          "name": "ensembl_id",
+          "description": "Ensembl gene identifier",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "ENSEMBL ID"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/uniprot",
+          "name": "uniprot",
+          "description": "UniProt protein identifier",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Uniprot"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/gene_name_hpa",
+          "name": "gene_name_hpa",
+          "description": "Gene name from Human Protein Atlas",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Gene_Name_HPA"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/chromosome",
+          "name": "chromosome",
+          "description": "Chromosome location of the gene",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "Chromosome"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/color",
+          "name": "color",
+          "description": "Fluorescence channel: blue (DAPI/nuclei), red (tubulin/microtubules), green (protein of interest), yellow (calreticulin/ER)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "color"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/replicate",
+          "name": "replicate",
+          "description": "Replicate identifier (e.g., R7, R11, R2)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "replicate"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/z_slice",
+          "name": "z_slice",
+          "description": "Z-stack slice identifier (e.g., z01, z00)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "z_slice"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/split",
+          "name": "split",
+          "description": "Dataset split designation for machine learning workflows (train/test)",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "split"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/archive_path",
+          "name": "archive_path",
+          "description": "Path to image file within zip archive",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "archive_path"
+            },
+            "transform": {
+              "regex": "^(.*vorinostat.*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/extracted_filename",
+          "name": "extracted_filename",
+          "description": "Filename extracted from the file path for joining",
+          "dataType": "sc:Text",
+          "references": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "filename"
+            }
+          },
+          "source": {
+            "fileSet": {
+              "@id": "vorinostat-image-files"
+            },
+            "extract": {
+              "fileProperty": "filename"
+            },
+            "transform": {
+              "regex": "([^\\/]*\\.jpg)$"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/full_path",
+          "name": "full_path",
+          "dataType": "sc:Text",
+          "description": "The FULL, absolute path to the cached image file on disk",
+          "source": {
+            "fileSet": {
+              "@id": "vorinostat-image-files"
+            },
+            "extract": {
+              "fileProperty": "filepath"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/image_content",
+          "name": "image_content",
+          "description": "The actual image content from within the archives",
+          "dataType": "sc:ImageObject",
+          "source": {
+            "fileSet": {
+              "@id": "vorinostat-image-files"
             },
             "extract": {
               "fileProperty": "content"
