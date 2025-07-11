@@ -429,7 +429,7 @@
               "@id": "all-image-files"
             },
             "extract": {
-              "fileProperty": "filepath"
+              "fileProperty": "filename"
             },
             "transform": {
               "regex": "([^\\/]*\\.jpg)$"
@@ -704,7 +704,7 @@
               "@id": "untreated-image-files"
             },
             "extract": {
-              "fileProperty": "filepath"
+              "fileProperty": "filename"
             },
             "transform": {
               "regex": "([^\\/]*\\.jpg)$"
@@ -979,7 +979,7 @@
               "@id": "paclitaxel-image-files"
             },
             "extract": {
-              "fileProperty": "filepath"
+              "fileProperty": "filename"
             },
             "transform": {
               "regex": "([^\\/]*\\.jpg)$"
@@ -1254,7 +1254,7 @@
               "@id": "vorinostat-image-files"
             },
             "extract": {
-              "fileProperty": "filepath"
+              "fileProperty": "filename"
             },
             "transform": {
               "regex": "([^\\/]*\\.jpg)$"
