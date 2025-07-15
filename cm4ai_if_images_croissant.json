@@ -412,6 +412,21 @@
         },
         {
           "@type": "cr:Field",
+          "@id": "all_images/ark",
+          "name": "ark",
+          "description": "Treatment condition: untreated, paclitaxel, or vorinostat",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "ark_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
           "@id": "all_images/extracted_filename",
           "name": "extracted_filename",
           "description": "Filename extracted from the file path for joining",
@@ -682,6 +697,21 @@
             },
             "extract": {
               "column": "archive_path"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "untreated_images/ark",
+          "name": "ark",
+          "description": "Treatment condition: untreated, paclitaxel, or vorinostat",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "ark_id"
             }
           }
         },
@@ -962,6 +992,21 @@
         },
         {
           "@type": "cr:Field",
+          "@id": "paclitaxel_images/ark",
+          "name": "ark",
+          "description": "Treatment condition: untreated, paclitaxel, or vorinostat",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "ark_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
           "@id": "paclitaxel_images/extracted_filename",
           "name": "extracted_filename",
           "description": "Filename extracted from the file path for joining",
@@ -1082,6 +1127,21 @@
             },
             "extract": {
               "column": "Treatment"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vorinostat_images/ark",
+          "name": "ark",
+          "description": "Treatment condition: untreated, paclitaxel, or vorinostat",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "manifest-csv"
+            },
+            "extract": {
+              "column": "ark_id"
             }
           }
         },
